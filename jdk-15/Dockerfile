@@ -1,10 +1,6 @@
-ARG UBUNTU_VERSION=latest
-FROM ubuntu:${UBUNTU_VERSION}
+FROM ubuntu:$UBUNTU_VERSION
 
-ARG NODEJS_VERSION
-ARG MAVEN_VERSION
-ARG JDK_VERSION
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get upgrade -y \
