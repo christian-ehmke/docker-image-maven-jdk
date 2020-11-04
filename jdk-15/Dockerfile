@@ -1,10 +1,10 @@
 ARG UBUNTU_VERSION=20.10
+FROM ubuntu:${UBUNTU_VERSION}
+
 ARG NODEJS_VERSION=14.x
 ARG MAVEN_VERSION=3.6.3
 ARG JDK_VERSION=openjdk-15-jdk
 ARG DEBIAN_FRONTEND=noninteractive
-
-FROM ubuntu:${UBUNTU_VERSION}
 
 RUN apt-get update \
     && apt-get upgrade -y \
