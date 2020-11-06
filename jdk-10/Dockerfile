@@ -1,5 +1,4 @@
 ARG VERSION=10-jdk
-
 FROM openjdk:${VERSION}
 
 ARG NODEJS_VERSION=14.x
@@ -9,8 +8,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
-      git \
+      joe \
+      git -o APT::Immediate-Configure=0 \
       wget \
+      curl \
       bash \
       zip \
       unzip \
@@ -18,7 +19,10 @@ RUN apt-get update \
     && apt-get install -y nodejs \
     && wget https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && tar xzvf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt \
-	&& rm apache-maven-${MAVEN_VERSION}-bin.tar.gz
+    && apt-get autoremove -y \
+    && apt-get upgrade -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 ENV PATH=/opt/apache-maven-${MAVEN_VERSION}/bin:$PATH
 
