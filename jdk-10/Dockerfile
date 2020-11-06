@@ -1,4 +1,4 @@
-ARG VERSION=9-jdk
+ARG VERSION=10-jdk
 
 FROM openjdk:${VERSION}
 
